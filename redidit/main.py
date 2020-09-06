@@ -7,7 +7,7 @@ main = Blueprint('main', __name__)
 
 @main.route('/')
 def index():
-	g.db = sqlite3.connect("project/db.sqlite")
+	g.db = sqlite3.connect("redidit/db.sqlite")
 	cur = g.db.execute("SELECT * FROM post LIMIT 5")
 	posts = [dict(post_id=row[0], title=row[1], body=row[2], upvotes=row[3], downvotes=row[4], author=row[5]) for row in cur.fetchall()]
 
