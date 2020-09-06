@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="title">
+  Welcome, {{ name }}!
+</h1>
+  Email: {{ current_user.email }}
+  Karma: {{ current_user.karma }}
+
+<form action="{{ url_for('auth.delete_user') }}" method="POST">
+  <input type="hidden" name="email" value="{{ current_user.email }}">
+  <button class="delete">
+</form>
+{% endblock %}

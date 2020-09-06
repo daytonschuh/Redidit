@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="title">
+  Welcome to Redidit!
+</h1>
+
+<h2 class="subtitle"> I'm a mess, I'm a wreck </h2>
+
+<a href="{{ url_for('post.create_post') }}"> Create a post!</a>
+
+<br><br><br>
+{% for post in posts %}
+<article class="media"}>
+	<figure class="media-left">
+		<p class="image is-64x64">
+			<img src="https://bulma.io/images/placeholders/128x128.png">
+		</p>
+	</figure>
+	<div class="media-content">
+		<div class="content">
+			<p>
+			<a href="{{ url_for('post.view_post', post_id=post.post_id) }}"><strong>{{ post.title }}</strong></a>
+			<br>{{ post.body }}
+		</div>
+		
+		<div class="level-left">
+			<a class="level-item"> <small>u/{{ post.author }}
+			</small></a>
+		</div>
+	</div>
+</article>
+{% endfor %}
+
+{% endblock %}
