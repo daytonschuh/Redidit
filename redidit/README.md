@@ -11,12 +11,18 @@
   - Sqlite
   
 ## Running the Project
-  - Clone the repository ```git clone https://www.github.com/daytonschuh/Redidit```
-  - Change to the appropriate directory ```cd Redidit```
-  - ```export FLASK_APP=redidit```
-  - ```export FLASK_DEBUG=1```
-  - Use the command ```flask run```
-  - Open your browser of choice and go to ```localhost:5000```<br>
+  - Clone the repository: ```git clone https://www.github.com/daytonschuh/Redidit```
+  - Change to the appropriate directory: ```cd Redidit```
+  - To ensure the proper environment, run the series of commands:
+  ```
+  python3 -m venv auth
+  source auth/bin/activate
+  pip install flask flask-sqlalchemy flask-login
+  export FLASK_APP=redidit
+  export FLASK_DEBUG=1
+  flask run
+  ```
+  - Open your browser of choice and go to: ```localhost:5000```<br>
   ***Work In Progress***
 
 
