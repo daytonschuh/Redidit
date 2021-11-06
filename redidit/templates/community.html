@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+Latest posts found in {{ community.community_name }}
+
+{% for post in posts %}
+<article class="media">
+	<div class="media-left image is-24x24">
+		<image src="https://bulma.io/images/placeholders/128x128.png">
+	</div>
+	<div class="media-content">
+		<div class="content">
+			<p>
+			<!--Probably want to do something like: src = community.logo -->
+			<!--Probably want to do something like: url_for('community', community = post.community)-->
+			<a href="{{ url_for('community.view_community', community_id=post.community_id) }}"><strong>{{ community.community_name }}</strong></a>
+			 - Posted by <a href="{{ url_for('main.profile', username=post.author) }}">u/{{ post.author }}</a>
+			- {{ post.creation_datetime|format_post_age }} ago
+			<a href="{{ url_for('post.view_post', id = post.id) }}"><h1 class="title">{{ post.title }}</h1 class="title"></a>
+			{{ post.body }}
+
+			<figure>
+				<p class="image is-128x128">
+					<img src="https://bulma.io/images/placeholders/128x128.png">
+				</p>
+			</figure>
+		</div>
+	</div>
+</article>
+{% endfor %}
+
+{%endblock%}

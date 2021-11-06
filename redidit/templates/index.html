@@ -7,29 +7,64 @@
 
 <h2 class="subtitle"> I'm a mess, I'm a wreck </h2>
 
-<a href="{{ url_for('post.create_post') }}"> Create a post!</a>
+<a href="{{ url_for('post.create') }}"> Create a post!</a>
+<a href="{{ url_for('community.create') }}">Create a community!</a>
 
 <br><br><br>
 {% for post in posts %}
-<article class="media"}>
-	<figure class="media-left">
-		<p class="image is-64x64">
-			<img src="https://bulma.io/images/placeholders/128x128.png">
-		</p>
-	</figure>
-	<div class="media-content">
-		<div class="content">
+	<div class="columns is-multiline">
+		<div key="post.id" class="column is-8">
+			<div class="card large">
+				<div class="card-content">
+					<div class="media">
+						<div class="media-left">
+							<figure class="image is-48x48">
+								<img :src="post.author.avatar">
+							</figure>
+						</div>
+						<div class="media-content">
+							<p class="title is-4 no-padding">{{ post }}</p>
+						</div>
+						<!-- <div class="card-image">
+							<figure class="image is-16by9">
+								<img :src="post.image" alt="image">
+							</figure>
+						</div> -->
+					</div>
+				</div>
 			<p>
-			<a href="{{ url_for('post.view_post', post_id=post.post_id) }}"><strong>{{ post.title }}</strong></a>
-			<br>{{ post.body }}
-		</div>
-		
-		<div class="level-left">
-			<a class="level-item"> <small>u/{{ post.author }}
-			</small></a>
+			<!--Probably want to do something like: src = community.logo -->
+			<!--Probably want to do something like: url_for('community', community = post.community)-->
+			<a><span class="icon is-small"><button class="fas fa-arrow-up"></button></span></a>
+			<p>{{ post.upvotes - post.downvotes }}
+			<a href="{{ url_for('community.view_community', community_id=post.community_id) }}"><strong>{{ post.community_id }}</strong></a>
+			· Posted by <a href="{{ url_for('main.profile', username=post.author) }}">u/{{ post.author }}</a>
+			· {{ post.creation_datetime|format_post_age }} ago · awards
+			<button class="button is-link is-rounded fas fa-plus">
+				Join
+			</button>
+			</p>
+			<a><span class="icon is-small"><button class="fas fa-arrow-down"></button></span></a>
+			</p>
+			<a href="{{ url_for('post.view_post', id = post.id) }}"><h1 class="title">{{ post.title }}</h1 class="title"></a>
+			{{ post.body }}
+			</div>
+			<div class="card large">
+				<div class="card-content">
+					<div class="media">
+						<div class="media-left">
+							<figure class="image is-48x48">
+								<img :src="post.author.avatar">
+							</figure>
+						</div>
+						<div class="media-content">
+							<p class="title is-4 no-padding"></p>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
-</article>
 {% endfor %}
 
 {% endblock %}

@@ -3,70 +3,65 @@
 
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Redidit</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css" />
+    <link crossorigin="anonymous" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+    integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+    rel="stylesheet">
+    <script src="https://kit.fontawesome.com/7dc3015a44.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <link rel="stylesheet" href="../css/cards.css">
 </head>
 
 <body>
+    <!-- NSFW Warning -->
+    <!--If warning accepted -->
     <section class="hero is-primary is-fullheight">
-
-        <div class="hero-head">
             <nav class="navbar">
                 <div class="container">
-
-                    <div id="navbarMenuHeroA" class="navbar-menu">
+                    <div id="navbar" class="navbar-menu">
 			
-			<!-- Home button on left side of NavBar -->
+		            	<!-- Home button on left side of NavBar -->
                         <div class="navbar-left">
                             <a href="{{ url_for('main.index') }}" class="navbar-item">
-                                Home
+                                <img src="./redidit.png" width="112" height="28" alt="Redidit">
                             </a>
-			</div>
+			            </div>
 
-			<!-- If the search bar is targeted -->
-			{% if true %}
-			<div class="control has-icons-left">
-				<input type="text" placeholder="Search" class="input is-rounded is-focused">
-				<span class="icon is-left">
-				<i class="fa fa-search"></i>
-				</span>
-			</div>
-			{% endif %}
+                        <!-- Search Bar -->
+			            <div class="control has-icons-left center">
+				            <input type="search" placeholder="Search Redidit" class="input">
+				            <span class="icon is-left">
+				                <i class="fas fa-search"></i>
+				            </span>
+			            </div>
 
-			<!-- Else -->
-			{% if not true %}
-			<div class="control has-icons-left">
-				<input type="text" placeholder="Search" class="input is-rounded">
-				<span class="icon is-left">
-				<i class="fa fa-search"></i>
-				</span>
-			</div>
-			{% endif %}
-
-
-			<div class="navbar-end">
-			    {% if current_user.is_authenticated %}
+                        <!-- Right hand side -->
+			            <div class="navbar-end">
+			            {% if current_user.is_authenticated %}
                             <a href="{{ url_for('main.profile') }}" class="navbar-item">
                                 Profile
                             </a>
-			    {% endif %}
 
-			    {% if not current_user.is_authenticated %}
+			                <a href="{{ url_for('message.messages') }}" class="navbar-item">
+				                Messages
+			                </a>
+
+        			        <a href="{{ url_for('auth.logout') }}" class="navbar-item">
+		        		        Logout
+			                </a>
+			            {% endif %}
+
+			            {% if not current_user.is_authenticated %}
                             <a href="{{ url_for('auth.login') }}" class="navbar-item">
                                 Login
                             </a>
+                    
                             <a href="{{ url_for('auth.signup') }}" class="navbar-item">
                                 Sign Up
                             </a>
-			    {% endif %}
-
-			    {% if current_user.is_authenticated %}
-                            <a href="{{ url_for('auth.logout') }}" class="navbar-item">
-                                Logout
-                            </a>
-			    {% endif %}
+        			    {% endif %}
                         </div>
                     </div>
                 </div>
@@ -80,6 +75,22 @@
             </div>
         </div>
     </section>
+    <footer class="footer">
+        <div class="container">
+          <div class="content has-text-centered">
+            <div class="soc">
+              <a href="https://daytonschuh.github.io"><i class="fa fa-github-alt fa-lg" aria-hidden="true"></i></a>
+              <a href="https://www.youtube.com/channel/UCh0o7KZrrYr404q-y3vzoKw"><i class="fa fa-youtube fa-lg" aria-hidden="true"></i></a>
+              <a href="#"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a>
+              <a href="#"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a>
+            </div>
+            <p>
+              <strong>Bulma</strong> by <a href="http://jgthms.com">Jeremy Thomas</a>.
+              The source code is licensed <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. <br>
+            </p>
+          </div>
+        </div>
+      </footer>
 </body>
 
 </html>
